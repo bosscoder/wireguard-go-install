@@ -312,12 +312,14 @@ ExecStop=$ip6tables_path -D FORWARD -m state --state RELATED,ESTABLISHED -j ACCE
         echo "RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target" >> /etc/systemd/system/wg-iptables.service
-        systemctl enable --now wg-iptables.service
+        systemctl enable wg-iptables.service
+        systemctl start wg-iptables.service
     fi
     # Generates the custom client.conf
     new_client_setup
     # Enable and start the wg-quick service
-    systemctl enable --now wg-quick@wg0.service
+    systemctl enable wg-quick@wg0.service
+    systemctl start wg-quick@wg0.service
     echo
     if ! hash qrencode 2>/dev/null && ! hash qrencode 2>/dev/null; then
         apt-get update
@@ -432,10 +434,12 @@ else
                         firewall-cmd --permanent --direct --remove-rule ipv6 nat POSTROUTING 0 -s fddd:2c4:2c4:2c4::/64 ! -d fddd:2c4:2c4:2c4::/64 -j SNAT --to "$ip6"
                     fi
                 else
-                    systemctl disable --now wg-iptables.service
+                    systemctl stop wg-iptables.service
+                    systemctl disable wg-iptables.service
                     rm -f /etc/systemd/system/wg-iptables.service
                 fi
-                systemctl disable --now wg-quick@wg0.service
+                systemctl stop wg-quick@wg0.service
+                systemctl disable wg-quick@wg0.service
                 rm -f /etc/systemd/system/wg-quick@wg0.service.d/boringtun.conf
                 rm -f /etc/sysctl.d/99-wireguard-forward.conf
                 apt-get remove --purge -y wireguard-tools
