@@ -4,8 +4,8 @@ WireGuard-Go installer for Ubuntu and Debian.
 This script will set up your own VPN server with WireGuard-Go, a userspace implementation of WireGuard. It does not require kernel modules, hence it can be run on machines running virtually any virtualization technology. Please note, this implementation is slower than using kernel module, use that where possible.
 
 ### Installation
-Download the script and make it executable:  
-`wget https://raw.githubusercontent.com/bosscoder/wireguard-go-install/master/wireguard-go-install.sh -O wireguard-go-install.sh && chmod +x wireguard-go-install.sh`
+Download, make executable, run:  
+`wget https://raw.githubusercontent.com/bosscoder/wireguard-go-install/master/wireguard-go-install.sh -O wireguard-go-install.sh && chmod +x wireguard-go-install.sh && bash wireguard-go-install.sh`
 
 Run the script  
 `./wireguard-go-install.sh`
