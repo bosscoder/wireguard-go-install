@@ -7,7 +7,7 @@ This script will set up your own VPN server with WireGuard-Go, a userspace imple
 Download, make executable, run:  
 `wget https://raw.githubusercontent.com/bosscoder/wireguard-go-install/master/wireguard-go-install.sh -O wireguard-go-install.sh && chmod +x wireguard-go-install.sh && bash wireguard-go-install.sh`
 
-Run the script  
+Run the script again:  
 `./wireguard-go-install.sh`
 
 Once it ends, you can run it again to add more users, remove some of them or even completely uninstall WireGuard-Go.
